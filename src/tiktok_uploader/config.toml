@@ -10,6 +10,7 @@ valid_descriptions = ["description", "desc", "caption"]
 # Selenium Webdriver Waits
 implicit_wait = 5  # seconds
 explicit_wait = 60 # seconds
+uploading_wait = 180 # seconds
 
 supported_file_types = ["mp4", "mov", "avi", "wmv", "flv", "webm", "mkv", "m4v", "3gp", "3g2", "gif"]
 
@@ -47,20 +48,19 @@ user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 	visibility = "//div[@class='tiktok-select-selector']"
 	options = ["Public", "Friends", "Private"]
 
-	hashtags = "//div[@class='mentionSuggestions']//*[contains(text(), '{}')]"
-	mentions = "//div[contains(concat(' ', normalize-space(@class), ' '), 'user-id') and .='{}']/.."
-
-	mention_box = "//input[contains(concat(' ', normalize-space(@class), ' '), 'search-friends')]"
+	mention_box = "//div[contains(@class, 'mention-list-popover')]"
+	mention_box_user_id = "//span[contains(@class, 'user-id')]"
 
 	comment = "//label[.='Comment']/following-sibling::div/input"
 	duet = "//label[.='Duet']/following-sibling::div/input"
 	stitch = "//label[.='Stitch']/following-sibling::div/input"
 
-	post = "//div[contains(@class, 'btn-post')]"
-	post_confirmation = "//div[contains(@class, 'tiktok-modal__modal-wrapper')]//div[contains(@class, 'tiktok-modal__modal-title') and contains(text(), 'Your videos are being uploaded to TikTok!')]"
+	post = "//button[contains(@class, 'TUXButton--primary')]"
+	post_confirmation = "//div[contains(text(), 'Your video has been uploaded')]"
+
 
 	[selectors.schedule]
-	switch = "//*[@id='tux-3']"
+	switch = "//*[@id='tux-1']"
 
 	date_picker = "//div[contains(@class, 'date-picker-input')]"
 	calendar = "//div[contains(@class, 'calendar-wrapper')]"
