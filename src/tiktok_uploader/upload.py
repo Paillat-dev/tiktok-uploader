@@ -291,6 +291,8 @@ def _set_description(driver, description: str) -> None:
     try:
         words = description.split(" ")
         for word in words:
+            if word is None or len(word) < 1:
+                continue
             if word[0] == "#":
                 desc.send_keys(word)
                 desc.send_keys(' ' + Keys.BACKSPACE)
@@ -341,6 +343,8 @@ def _set_description(driver, description: str) -> None:
 
     except Exception as exception:
         print('Failed to set description: ', exception)
+        import traceback
+        traceback.print_exc()
         _clear(desc)
         desc.send_keys(saved_description)
 
